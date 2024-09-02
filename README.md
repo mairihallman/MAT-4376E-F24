@@ -1,5 +1,5 @@
 # MAT-4376-F24
-Repository for MAT 4376, Fall 2024.
+Repository for [MAT 4376E](https://www.data-action-lab.com/tda/), Fall 2024.
 
 ## Projects and Deadlines
 
