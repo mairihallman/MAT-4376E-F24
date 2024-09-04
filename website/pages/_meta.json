@@ -1,0 +1,11 @@
+{
+  "index": "Introduction",
+  "Assignment01": "Assignment 1 - Data Visualization",
+  "Assignment02": "Assignment 2 - Bayesian Data Analysis",
+  "Assignment03": "Assignment 3 - Queueing Systems",
+  "Assignment04": "Assignment 4 - Anomaly Detection & Outlier Analysis",
+  "MeetTheTeam": {
+    "title": "Meet The Team",
+    "type": "page"
+  }
+}
