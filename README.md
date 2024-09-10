@@ -77,3 +77,17 @@ array([[1. , 3. ],
 I will link below a few YouTube videos that provide a very good introduction to data science with Python below.
 - https://www.youtube.com/watch?v=LHBE6Q9XlzI
 - https://www.youtube.com/watch?v=b093aqAZiPU
+Try not to look at their runtimes...
+              /| _ ╱|、  
+             ( •̀ㅅ •́  )
+           ＿ノ ヽ ノ＼＿ 
+        /　`/ ⌒Ｙ⌒ Ｙ　 \
+       ( 　(三ヽ人　 /　 　|
+        |　ﾉ⌒＼ ￣￣ヽ　 ノ
+        ヽ＿＿＿＞､＿＿／
+            ｜( 王 ﾉ〈 
+           /ﾐ`ー―彡\ 
+          |╰        ╯|   
+          |    /\    |
+          |   /  \   |                    
+          | /     \  |                  
