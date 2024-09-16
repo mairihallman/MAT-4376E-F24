@@ -1,5 +1,5 @@
 # Mairi's (very messy) notes
-[FiveThirtyEight polling average methodology]https://fivethirtyeight.com/methodology/how-our-polling-averages-work/] - guideline for us?
+[FiveThirtyEight polling average methodology](https://fivethirtyeight.com/methodology/how-our-polling-averages-work/) - guideline for us?
 
 - polls of likely voters > polls of registered voters > polls of all adults
 - cap sample sizes at 5000, windsorize (idk if windsorizing makes sense here)
@@ -12,3 +12,4 @@
 
 # Ideas
 - augment dataset with electoral college points?
+- [how electoral college works](https://chatgpt.com/share/66e84bb5-ca58-8006-99ad-7697cf58228d)
