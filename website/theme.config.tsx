@@ -1,6 +1,7 @@
 import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 
+
 const config: DocsThemeConfig = {
   logo: <span>MAT 4376 GROUP 1</span>,
   project: {
@@ -13,3 +14,4 @@ const config: DocsThemeConfig = {
 }
 
 export default config
+
