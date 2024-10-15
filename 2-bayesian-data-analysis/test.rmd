@@ -1,0 +1,11 @@
+```{r}
+set.seed(1) # for replicability
+N.draw = 500000 # number of replicates
+x = 500 # number of bills marked in the initial capture
+y = 300 # number of bills sampled in the second capture
+w = 127 # number of marked bills in the second capture
+```
+```{r}
+upper.limit = 1500 # maximum (theoretical) number of bills
+bin.width = 50 # for plotting the posterior
+```
