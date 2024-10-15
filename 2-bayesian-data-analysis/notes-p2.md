@@ -17,3 +17,10 @@ Tasks
 (` - 7
  |、⁻〵
  じしˍ,)ノ
+
+ For Next Meeting (Things to think about)
+
+ - Colours
+ - What is the story
+ - List of what needs to be done
+    - What questions can you ask the team?
