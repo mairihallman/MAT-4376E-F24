@@ -11,7 +11,11 @@ const config: DocsThemeConfig = {
   footer: {
     text: 'Team 1 Github',
   },
+  darkMode: false,
+  nextThemes: {
+    defaultTheme: 'light',
+    forcedTheme: 'light',
+  }
 }
 
 export default config
-

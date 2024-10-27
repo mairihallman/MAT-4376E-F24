@@ -1,10 +1,10 @@
-# Task 4
+## Section 4
 
-The next area of analysis is in regards to data collected from the hospital. First we will be defining the data, and explaining what some of the values mean. In the second portion we wil be analyzing. We have divided up the dataset into three distinct sections; Precursor Data, Geographical Data, Variable Data. These are divisions make by the type of the data provided (Category vs Numeric) as well as the type of actional markers we can recommend.
+The next area of analysis is in regards to data collected from the hospital. First we will be defining the data, and explaining what some of the values mean. In the second portion we wil be analyzing. We have divided up the dataset into three distinct sections; Precursor Data, Geographical Data, Variable Data. These are divisions make by the type of the data provided (Category vs Numeric) as well as the type of actionable markers we can recommend.
 
-## Data Dictionary
+### Data Dictionary
 
-### Precursor Data
+#### Precursor Data
 
 Each patients arrives to the hospital in a given state. Each patient is assigned a gender, age, marital status, etc. These are data points which cannot be controlled by the hospital. Below is the data dictionary for this section.
 
@@ -19,10 +19,10 @@ Each patients arrives to the hospital in a given state. Each patient is assigned
 | ethnicity | string | Reorganized to Categories White, Black, Asian, Hispanic, Other and Unavailable |
 
 
- !!! Notes Originally ethnicity was expressed as subcategories ( eg. ASIAN - Chinese ). Little insight could be drawn from such small subdivision so it was oped to categorize them into broader categories. Unavailable has remained the same. 
+> Note: Originally ethnicity was expressed as subcategories ( eg. ASIAN - Chinese ). Little insight could be drawn from such small subdivision so it was oped to categorize them into broader categories. Unavailable has remained the same. 
 
 
-### Positional Data
+#### Positional Data
 
 Each hospital is located in different parts of the United States, and will be pushed by different factors due to that location. Further more each patient will be inducted into different parts of the hospital. A patient entering emerge will have a different experience to those entering newborn. 
 
@@ -35,7 +35,7 @@ Each hospital is located in different parts of the United States, and will be pu
 With this section of data we will look into patients records across time, and throughout different parts of the hospital. 
 
 
-### Variable Data
+#### Variable Data
 
 This is data that in some way could change via workflow changes within the hospital, and as mistakes are made by staff. The number of labs for instance. It is possible that every hospital currently operates with the utmost efficiency with no wasted lab results. This is incredibly unlikely however, especially when excessive lab assessment's lengthen the stay of the patient. What will be shown later in this report is a statistical approach to which variables may be of higher importance to the length of each patients stay.
 
@@ -43,29 +43,26 @@ This is data that in some way could change via workflow changes within the hospi
 | --- | --- | --- |
 | AdmitDiagnosis | string | Diagnosis upon admission |
 | NumCallouts | integer | Number of clinicians *called out* of their working hours |
-| NumDiagnosis| float | ICD-9 Code Diagnosis |
-| NumProcs         | float | ICD-9 Code Procedures|
-| AdmitProcedure   | string | Procedure performed upon admission |
-| NumCPTevents     | float | CPT Code labeled events |
-| NumInput         | float| ICD-9 Code of inputs (e.g., fluids) |
-| NumLabs          | float |ICD-9 Code of lab tests performed |
-| NumMicroLabs     | float| ICD-9 of microbiology lab tests |
-| NumNotes         | float| Number of clinical notes  |
-| NumOutput        | float | ICD-9 Code of outputs (e.g., urine) |
-| NumRx            | float | Number of prescribed medications |
-| NumProcEvents    | float | ICD-9 Procedure Code |
-| NumTransfers     | float | ### Transfer code |
-| NumChartEvents   | float | #### |
-| ExpiredHospital  | boolean | Whether the patient died in hospital |
-| TotalNumInteract | float | number of interactions |
-
-You will note the use of coding systems such as ICD-9. These codes are standardized by organization bodies such as the NIH and are used across hospitals.
-For more information see [PubMed](https://pmc.ncbi.nlm.nih.gov/articles/PMC3865615/#:~:text=The%20ICD%2D9%2DCM%20system,Diseases%20(ICD%2D9).)
+| NumDiagnosis| float | Aggregate Number of Procedures |
+| NumProcs | float | Aggregate Number of Procedures |
+| AdmitProcedure | string | Procedure performed upon admission |
+| NumCPTevents | float | CPT Code labeled events |
+| NumInput | float| Aggregate Number of Inputs ( eg Medication Administered ) |
+| NumLabs | float | Aggregate Number of Labs|
+| NumMicroLabs | float| Aggregate Number of Procedures Micro Labs|
+| NumNotes | float| Aggregate Number of Clinical Notes |
+| NumOutput | float | Aggregate Number of Procedures Outputs|
+| NumRx | float | Number of prescribed medications |
+| NumProcEvents | float | Aggregate Number of Procedures|
+| NumTransfers | float | Aggregate Number of Transfers |
+| NumChartEvents | float |Aggregate Number of Procedures |
+| ExpiredHospital | boolean | Whether the patient died in hospital |
+| TotalNumInteract | float | Aggregate Number of Procedures |
 
 
-## Analytics
+### Analytics
 
-### Precursor Data
+#### Precursor Data
 
 Due to the fact that this data is prior to the patients arrival at the hospital, there is little that can be said for actionable results. Instead we will seek to understand more about the patient base.
 
@@ -80,8 +77,6 @@ The key not is the greater proportion of men making up 55% of the patient base.
 This proportion is interesting as it is 5% offset from the national average. 
 
 **Age**
-
-!!! Add histogram that looks nice
 
 For ages strictly greater than 0 we have a skewed distribution shown in figure ## with mean equal to 61 and standard deviation equal to 16; comparing this to the average age in the United States being 38. This is not unexpected as people of more age are more likely to posses ailments requiring hospital visitation. 
 
@@ -103,10 +98,12 @@ As shown in the pie-charts below, 50% of patients are married. This is similar t
 
 **Ethnicity**
 
-As mentioned above, the ethnicity was simplified to 6 categories. According to the pie-chart below, 70% of patients identify as white. This is 10% higher than the national average. This leads us to believe that this hospital operates is a predominantly white area. This idea is supported by the difference between patient ethnicity percentage and the national average. 
+As mentioned above, the ethnicity was simplified to 6 categories. According to the pie-chart below, 70% of patients identify as white. This is 10% higher than the national average. This idea is supported by the difference between patient ethnicity percentage and the national average. 
 
+!(Histogram)[precursor_histogram.png]
+!(Pie Charts)[precursor_piechart.png]
 
-### Positional Data
+#### Positional Data
 
 **Admit Type**
 
@@ -119,37 +116,59 @@ The vast majority of patients enter as emergency (71%).
 Within the Hospital there are 8 known locations a patient can be admitted to. It follow from the previous section that the majority of patients will be entering via the Emergency Room, this corroborates that theory, in total 38% of patients.
 
 
-### Variable Data
+#### Variable Data
 
 It is important to note that any correlational data will be done in the next section as a precursor to the Bayesian Linear Regression Analysis.
 
 Until then we will look into the frequences of some key data points withing the Variable Data.
 
-**NumDiagnosis**
+**AdmitDiagnosis**
 
-- most common diagnosis
+Though the duration of the data over 15 thousand unique diagnosis's were found, nearly half of which were Newborn. Due to the nuances many diagnosis's entail, we will analysis the diagnosis further by filtering by keywords. If a keyword is detected, the entry will be flagged and categorized accordingly. 
 
+In total this system flagged:
 
-**NumProcedure**
+| Category | NumFlagged_Items | Keywords  |
+| --- | --- | --- |
+| Other | 43133 | N/A  |
+| Diagnostic  |  3991 | scan, x-ray, ultrasound, mri, ct, imaging, biopsy, diagnostic  |
+| Preventive | 2683 | vaccination, screening, check-up, preventive, immunization |
+| Cardiovascular | 2587 | angioplasty, stent, bypass, pacemaker, cardiac, heart |
+| Surgical | 2008 | surgery, operation, resection, excision, laparotomy, amputation, biopsy |
+| Gastrointestinal | 1760 | endoscopy, colonoscopy, gastrectomy, biopsy, bowel, liver  |
+| Renal | 1417 | dialysis, nephrectomy, catheter, kidney, bladder, renal  |
+| Therapeutic |  1229 | therapy, treatment, chemotherapy, radiation, rehabilitation, transfusion |
+| Respiratory  | 154 | ventilation, tracheotomy, bronchoscopy, thoracotomy, oxygen, pulmonary   |
+| Musculoskeletal  | 14 | arthroscopy, joint, spine, orthopedic, tendon, ligament |
 
-- most common procedure && what different approaches are compared to the NUMDiagnosis
+**AdmitProcedure**
 
+We use a similar filter as above to analyze the procedures recorded.
 
-**NumInputs & Num OutPuts**
+| Category | NumFlagged_Items | Keywords |
+| --- | --- | --- |
+| Other | 43133 | N/A |
+| Diagnostic| 3991 | scan, x-ray, ultrasound, mri, ct, imaging, biopsy, diagnostic |
+| Preventive  | 2683 | vaccination, screening, check-up, preventive, immunization |
+| Cardiovascular   | 2587 | angioplasty, stent, bypass, pacemaker, cardiac, heart |
+| Surgical| 2008 | surgery, operation, resection, excision, laparotomy, amputation, biopsy  |
+| Gastrointestinal |  1760 | endoscopy, colonoscopy, gastrectomy, biopsy, bowel, liver |
+| Renal  |  1417 | dialysis, nephrectomy, catheter, kidney, bladder, renal  |
+| Therapeutic |  1229 | therapy, treatment, chemotherapy, radiation, rehabilitation, transfusion |
+| Respiratory  | 154 | ventilation, tracheotomy, bronchoscopy, thoracotomy, oxygen, pulmonary   |
+| Musculoskeletal  |  14 | arthroscopy, joint, spine, orthopedic, tendon, ligament |
 
-- Comparing the Inputs to Outputs
+Although the majority of procedures could not be flagged, this tables still gives us an understanding how many of each type of procedure are completed and should be used to find proportions of categories, as opposed to the raw size. 
 
-
-**Num Transfers**
-
-- This becomes the biggest correlation with Lenghth of Stay, go over the average length of stay in diagnosis. 
+!(Admit & Procedure Piechart)[variable_piechart.png]
 
 
 **Expired in Hospital**
 
-- Age of people who pass, most common procedures being done. This provides the customer with a list of things that are risk
-- They may not be able to do anything but its good to flag it
+Thanks in part to the categories we defined above, we can go through and analyses which groups of procedures and diagnosis have the highest mortality rate associated with them. It is important to note that this does not imply correlation. A particular ailment may have a high lethality despite the procedures complete not because of them. Below are two bar plots showing the number of occurrences than a particular diagnosis or procedure lead to expiry. However more importantly, as we establish above, the categories are designed to be a guideline for probabilities. As such the second bar graph shows the likelihood that given a particular diagnosis or procedure that you would expire within the hospital.
 
+!(Num of Occurance)[variable_barplot.png]
+!(Likelihood of Occurance)[variable_barplot_likelihood.png]
 
 
 
@@ -158,6 +177,3 @@ Until then we will look into the frequences of some key data points withing the 
 
 
 Insights can be extracted from this dataset from a comparison to the average. Because this hospital operates in the United States, we compare the precursor data to data released by the United States Census Bueraum and [US Religion Census](https://www.usreligioncensus.org/sites/default/files/2023-10/2020_US_Religion_Census.pdf) [PEW](https://www.pewresearch.org/social-trends/2021/10/05/rising-share-of-u-s-adults-are-living-without-a-spouse-or-partner/) [USAFACTS](https://usafacts.org/articles/the-diverse-demographics-of-asian-americans/)
-
-# GO OFF OF [MIMIC Website](https://mimic.mit.edu/docs/iii/tables/admissions/)
-EXTRAM - Expanded trauma
