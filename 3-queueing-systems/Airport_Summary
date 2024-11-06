@@ -1,0 +1,30 @@
+- Notes for Wednesday that I wont be there
+
+    - If I change Sch_Departure or Act_Departure to date time this data seems to be from the 1850's
+        - However since planes weren't invented until the 1900's im going to assume this is wrong...
+         - for purposes of our story Im just assuming its current time and we can go from there ?
+
+    - Below is my working data-dictionary, it DOESN'T need to be final, its just filler until we decide how we want to organize it.
+
+    - Most of this text is summarizing the flights, where then went, passengers, etc. Most of it is on the delays, and the different ways the data can be a bit funky. 
+
+## Introduction
+
+
+## A brief summary on flights
+
+( Broadest Data dictionary )
+
+
+For the next section we will go through the data for the AUC airfield located in Auckland, Borealia. Between the Months of September to December we have logged over 3500 flights departing from the AUC airfield. On average there were 31 passages, and were delayed by roughly 15 minutes. We also know that there were 2.5x more flights on weekdays, rather than on week ends. 
+
+This network of 4 airports (BOR, VES, NEN, SCO) accounts for all of the outgoing flights from the AUC airfield with a distribution of 72% - BOR, 21% - VES, 5% - NEN, 1% - SCO. 
+
+It should be mentioned however that these basic statistics are heavily skewed as the delays during the month of December alone accounted for 38% of all delayed time, while only being 23% of flights. Without more data we cannot say what the cause is, however we suggest in change in climate is likely to have a strong effect. 
+
+Looking into the time of day shows another very clear skew in relation to delays. Night flights had an average delay of 3 hours, and as express in the boxplot below, nearly all of the flights were delayed by by more than their daytime counter parts. This comes with a heavy caviate, that over the 4 months, only 6 night flights were recorded.
+
+Of those 6 flights, five traveled to BOR, and one traveled to VES. Also worth noting is that half of these flights only had 1 passenger. This should not however be seen as a reason for delay has control towers need follow a strict schedule. It is more likely that these setbacks are a result of poor visibility. Although again, this is purely the hypothetical proposed by this team. 
+
+
+[text](blob:vscode-webview%3A//0mhrglp2a73tqh1to6l84q4meogbc81vmmmahg6p6dfdqbvpq7kn/22864cc9-783d-4169-b2db-045efda9c4e0)
