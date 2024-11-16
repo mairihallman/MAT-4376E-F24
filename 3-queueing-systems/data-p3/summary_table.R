@@ -2,6 +2,7 @@ df <- read.csv("./3-queueing-systems/data-p3/comp_data.csv")
 library(lubridate)
 library(dplyr)
 library(tidyr)
+library(purrr)
 df$Wait_Time
 
 #creating clusters by hour and by period of week
@@ -67,3 +68,31 @@ summary_table_2 <- summary_table_2.1 %>%
   )
 print(summary_table_2)
 
+summary_table_3.1 <- df %>%
+  group_by(cluster) %>%
+  summarise(
+   'Avg Wait Time' = mean(Wait_Time, na.rm = TRUE),
+   .groups = "keep"
+  )
+print(summary_table_3.1)
+
+performance_time <- df %>%
+  group_by(cluster) %>%
+  count(Wait_Time) %>%
+  mutate(percent = n / sum(n) * 100) %>%
+  pivot_wider(names_from = Wait_Time, values_from = percent, values_fill = list(percent = 0))
+
+# Define thresholds
+thresholds <- c(5, 10, 15, 20, 25, 30)
+
+percentage_table_by_cluster <- df %>%
+  group_by(cluster) %>%
+  summarise(
+    !!!setNames(
+      lapply(thresholds, function(th) mean(df$Wait_Time <= th, na.rm = TRUE) * 100),
+      paste0("≤ ", thresholds, " mins")
+    )
+  ) 
+
+# View the resulting table
+print(percentage_table_by_cluster)
