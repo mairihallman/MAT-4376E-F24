@@ -45,7 +45,7 @@ ON
 con.sql("""CREATE OR REPLACE TABLE JOINED AS select t1.pass_id
         , (STRPTIME(t1.sch_departure, '%Y-%m-%d %H:%M:%S')-INTERVAL 5 MINUTE) as Sch_Departure
         , (STRPTIME(t1.act_departure, '%Y-%m-%d %H:%M:%S')-INTERVAL 5 MINUTE) as Act_Departure
-        , CASE WHEN t1.Month='08-Aug' THEN t1.C0 ELSE COALESCE(t2.C0, t1.C0) END as C0
+        , CASE WHEN t1.Month='08-Aug' THEN t1."C0" ELSE COALESCE(t2.C0, t1.C0) END as C0
         , CASE WHEN t1.Month='08-Aug' THEN t1.C_Start ELSE COALESCE(t2.C_Start,t1.C_Start) END as C_Start
         , CASE WHEN t1.Month='08-Aug' THEN t1.C_Avg ELSE COALESCE(t2.C_Avg,t1.C_Avg) END as C_Avg
         , t1.S2 as S2
@@ -64,6 +64,14 @@ con.sql("""CREATE OR REPLACE TABLE JOINED AS select t1.pass_id
 # exporting joined data
 con.sql("""COPY JOINED TO './joined.csv' (HEADER, DELIMITER ',')""")
 
+# import joined_all (Emma cleaned data), taking only Oct, Nov, Dec data
+df3 = pd.read_csv("./joined_all.csv")
+con.sql(""" CREATE OR REPLACE TABLE JOINED AS
+        WITH CTE AS (SELECT * FROM df3)
+        SELECT * from CTE WHERE date_part('month', CAST(S2 as TIMESTAMP)) > 9""")
+con.sql("""ALTER TABLE JOINED
+RENAME COLUMN "C0 - S2" to c0;""")
+
 # creating the cu report (maximum number of simultaneously active servers during 15-minute block)
 con.sql("""
 CREATE OR REPLACE TABLE cu_report AS
@@ -71,7 +79,7 @@ CREATE OR REPLACE TABLE cu_report AS
         date_part('day', CAST(S2 as TIMESTAMP)) AS day,
         DATE_TRUNC('hour', CAST(S2 AS TIMESTAMP)) 
             + INTERVAL '1 minute' * (FLOOR(EXTRACT(MINUTE FROM CAST(S2 AS TIMESTAMP)) / 15) * 15)::int AS interval_start,
-        MAX(C0) as max_Servers
+        MAX(c0) as max_Servers
 FROM 
     joined
 GROUP BY 
@@ -105,7 +113,7 @@ CREATE OR REPLACE TABLE clustered AS SELECT *
         WHEN 20 <= DATE_PART('HOUR', CAST(S2 as TIMESTAMP)) AND DATE_PART('HOUR', CAST(S2 as TIMESTAMP)) < 24 THEN '20:00 - 0:00'
         END AS hour_cluster
         , CASE
-        WHEN Period_of_week = '1 - WEEKDAY' THEN 436 ELSE 176 END AS week_cluster
+        WHEN Period_of_week = '1 - WEEKDAY' THEN 260 ELSE 108 END AS week_cluster
         FROM JOINED
 """)
 # calculating the mean wait time for each cluster and imputing the nulls as such
@@ -302,8 +310,8 @@ con.sql("COPY reg TO './reg.csv' (HEADER, DELIMITER ',')")
 # Regerssion is done in R using reg.csv, 
 # a and b come from the regression done in R
 
-a=0.308737
-b=0.996213
+a=0.301558
+b=0.996888
 
 # creating table with regression qos estimates, one formatted and one with raw data for c estimates
 Q_reg_est_Formatted=f""" create or replace table reg_ests_formatted as 
@@ -338,5 +346,5 @@ con.sql("COPY reg_ests TO './reg_ests.csv' (HEADER, DELIMITER ',')")
 
 con.sql(Q_reg_est_Formatted)
 con.sql("COPY reg_ests_formatted TO './reg_ests_formatted.csv' (HEADER, DELIMITER ',')")
-
+ 
 # the rest is done in R
