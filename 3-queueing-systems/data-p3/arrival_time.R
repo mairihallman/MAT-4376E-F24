@@ -1,4 +1,5 @@
 df <- read.csv("./3-queueing-systems/data-p3/comp_data.csv")
+
 library(lubridate)
 library(dplyr)
 
@@ -37,6 +38,7 @@ df <- df%>%
 df$S1_hstime
 
 df <- df %>%
+  group_by(Wait_Time, Period_of_Week) %>%
   mutate(S2_date = as.Date(S2),
   S1_datetime = S2_date + S1_hstime)
 df$S1_datetime
